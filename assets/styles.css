@@ -1,0 +1,107 @@
+/* Base layout */
+body {
+  font-family: "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 0 1rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  background-color: #111;
+  color: #eee;
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-family: 'Courier New', Courier, monospace;
+  color: #00ffe7;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: 2rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.25rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #ffd700;
+}
+
+/* Paragraphs and content */
+p {
+  margin-bottom: 1rem;
+}
+
+/* Summary block */
+.summary {
+  background: #222;
+  border-left: 4px solid #00ffe7;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+/* Links */
+a {
+  color: #00ffe7;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid #444;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  body {
+    padding: 0 0.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Optional: Dark mode toggle setup (not yet enabled) */
+/*
+:root {
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #fff;
+    color: #111;
+  }
+
+  a {
+    color: #0055cc;
+  }
+
+  .summary {
+    background: #f5f5f5;
+    border-left: 4px solid #0055cc;
+  }
+
+  footer {
+    color: #444;
+  }
+}
+*/
