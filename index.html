@@ -107,5 +107,23 @@
   <p>&copy; 2025 Raymond Project. All rights fractured.</p>
 </footer>
 <!-- END:footer -->
+  <script>
+  const entries = document.querySelectorAll('.entry');
+
+  const observer = new IntersectionObserver((entriesList) => {
+    entriesList.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.25
+  });
+
+  entries.forEach(el => {
+    el.classList.add('glitch-in');
+    observer.observe(el);
+  });
+</script>
 </body>
 </html>
