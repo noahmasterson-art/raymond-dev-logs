@@ -9,6 +9,16 @@ body {
   line-height: 1.6;
   background-color: #111;
   color: #eee;
+  transition: background-color 1s ease;
+  animation: bgMorph linear;
+  animation-timeline: scroll();
+  animation-range: 0 100vh;
+}
+
+/* Background morph on scroll */
+@keyframes bgMorph {
+  0% { background-color: #111; }
+  100% { background-color: #000; }
 }
 
 /* Headings */
@@ -17,6 +27,8 @@ h1, h2, h3 {
   color: #00ffe7;
   margin-top: 2rem;
   margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 h1 {
@@ -64,6 +76,41 @@ footer {
   color: #888;
 }
 
+/* Scroll-driven jitter animation for entries */
+@keyframes jitter {
+  0%, 100% { transform: translate(0); filter: none; }
+  25% { transform: translate(1px, -1px) skew(0.5deg); filter: brightness(1.05); }
+  50% { transform: translate(-1px, 1px) skew(-0.5deg); filter: contrast(1.1); }
+}
+
+.entry {
+  animation: jitter 0.8s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 20% cover 40%;
+  will-change: transform;
+}
+
+/* Glitch text effect on hover */
+.entry h2:hover {
+  color: #ff00c8;
+  text-shadow:
+    1px 0 red,
+    -1px 0 blue;
+  animation: glitchFlash 0.3s linear infinite;
+}
+
+@keyframes glitchFlash {
+  0% { text-shadow: 1px 0 red, -1px 0 blue; }
+  50% { text-shadow: -2px 0 blue, 2px 0 red; }
+  100% { text-shadow: 1px 0 red, -1px 0 blue; }
+}
+
+/* Cursor magnetic hover effect */
+.entry:hover {
+  transform: scale(1.01) rotate(0.1deg);
+  transition: transform 0.3s ease;
+}
+
 /* Responsive tweaks */
 @media (max-width: 600px) {
   body {
@@ -78,30 +125,3 @@ footer {
     font-size: 1.25rem;
   }
 }
-
-/* Optional: Dark mode toggle setup (not yet enabled) */
-/*
-:root {
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: #fff;
-    color: #111;
-  }
-
-  a {
-    color: #0055cc;
-  }
-
-  .summary {
-    background: #f5f5f5;
-    border-left: 4px solid #0055cc;
-  }
-
-  footer {
-    color: #444;
-  }
-}
-*/
