@@ -139,4 +139,17 @@ footer {
 .entry.visible h2 {
   animation: glitchFlash 0.3s steps(2, end) 2;
 }
+  .scroll-reverse {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.scroll-content {
+  position: sticky;
+  top: 50%;
+  transform: translateY(0);
+  transition: transform 0.1s linear;
+  z-index: 2;
+}
 }
