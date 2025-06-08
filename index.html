@@ -157,27 +157,11 @@
   <p>&copy; 2025 Raymond Project. All rights fractured.</p>
 </footer>
 <!-- END:footer -->
- <script>
-  const entries = document.querySelectorAll('.entry');
-
-  const observer = new IntersectionObserver((entriesList) => {
-    entriesList.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, {
-    threshold: 0.25
-  });
-
-  entries.forEach(el => {
-    el.classList.add('glitch-in');
-    observer.observe(el);
-  });
-</script>
 <script>
+document.addEventListener('DOMContentLoaded', () => {
   const entries = document.querySelectorAll('.entry');
 
+  // Parallax on scroll
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
@@ -185,25 +169,40 @@
     entries.forEach((entry, index) => {
       const rect = entry.getBoundingClientRect();
       const offset = rect.top - windowHeight / 2;
-      const parallaxSpeed = 0.08 + (index % 3) * 0.02; // vary speed by entry
+      const parallaxSpeed = 0.08 + (index % 3) * 0.02;
       const move = offset * parallaxSpeed;
-
       entry.style.transform = `translateY(${move}px)`;
     });
   });
-</script>
-<script>
-function triggerSketchShake() {
-  document.body.classList.add('shake-screen');
-  setTimeout(() => {
-    document.body.classList.remove('shake-screen');
-  }, 2000); // Duration = animation length * iteration count
-}
 
-// Example trigger: automatic after delay or on button click
-setTimeout(triggerSketchShake, 1000); // shake after 1 second on load
+  // Drift effect: randomly apply to some entries as they enter view
+  const driftObserver = new IntersectionObserver((entryList) => {
+    entryList.forEach(item => {
+      if (item.isIntersecting && Math.random() < 0.4) {
+        item.target.setAttribute('data-drift', 'true');
+      }
+    });
+  }, { threshold: 0.2 });
 
-// Optional: call triggerSketchShake() on scroll, click, or glitch event
+  entries.forEach(entry => driftObserver.observe(entry));
+
+  // Shake trigger: shake screen once after scrolling 600px
+  let shaken = false;
+  function triggerSketchShake() {
+    if (shaken) return;
+    shaken = true;
+    document.body.classList.add('shake-screen');
+    setTimeout(() => {
+      document.body.classList.remove('shake-screen');
+    }, 2000);
+  }
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 600) {
+      triggerSketchShake();
+    }
+  }, { passive: true });
+});
 </script>
 </body>
 </html>
