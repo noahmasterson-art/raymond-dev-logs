@@ -192,24 +192,14 @@
     });
   });
 </script>
-  <script>
+ <script>
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.entry p').forEach(p => {
-    p.style.position = 'relative';
-    const ghost = p.cloneNode(true);
-    ghost.className = 'glitch-ghost';
-    p.appendChild(ghost);
-  });
-});
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.entry p').forEach(p => {
-    // Create ghost
+    if (p.parentNode.querySelector('.glitch-ghost')) return; // Skip if already has one
+
     const ghost = p.cloneNode(true);
     ghost.className = 'glitch-ghost';
 
-    // Wrap ghost in a container that doesn't break layout
     const wrapper = document.createElement('div');
     wrapper.style.position = 'absolute';
     wrapper.style.top = '0';
@@ -218,8 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
     wrapper.style.pointerEvents = 'none';
     wrapper.appendChild(ghost);
 
-    // Place wrapper next to the original element
-    p.parentNode.style.position = 'relative'; // ensure containing block
+    p.parentNode.style.position = 'relative';
     p.parentNode.appendChild(wrapper);
   });
 });
