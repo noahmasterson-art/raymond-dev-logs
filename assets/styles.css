@@ -1,6 +1,6 @@
 /* Base layout */
 body {
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: "Tektur", sans-serif;
   margin: 0;
   padding: 0 1rem;
   max-width: 700px;
@@ -42,6 +42,11 @@ h2 {
   color: #ffd700;
 }
 
+h3 {
+  font-size: 1rem;
+
+}
+
 /* Paragraphs and content */
 p {
   margin-bottom: 1rem;
@@ -79,8 +84,8 @@ footer {
 /* Scroll-driven jitter animation for entries */
 @keyframes jitter {
   0%, 100% { transform: translate(0); filter: none; }
-  25% { transform: translate(1px, -1px) skew(0.5deg); filter: brightness(1.05); }
-  50% { transform: translate(-1px, 1px) skew(-0.5deg); filter: contrast(1.1); }
+  25% { transform: translate(5px, -5px) skew(0.5deg); filter: brightness(1.05); }
+  50% { transform: translate(-5px, 5px) skew(-0.5deg); filter: contrast(1.1); }
 }
 
 .entry {
@@ -124,6 +129,10 @@ footer {
   h2 {
     font-size: 1.25rem;
   }
+      h3 {
+    font-size: .75rem;
+  }
+    
  .entry {
   transition: transform 0.2s ease-out;
   will-change: transform;
