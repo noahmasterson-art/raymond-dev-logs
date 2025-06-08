@@ -152,4 +152,10 @@ footer {
   transition: transform 0.1s linear;
   z-index: 2;
 }
+  .entry {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
 }
