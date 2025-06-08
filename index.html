@@ -24,8 +24,6 @@
   gtag('config', 'G-KSN04D6NZC');
 </script>
 <body>
-    <section class="scroll-reverse">
-  <div class="scroll-content">
 <h1 class="entry">Technology. Enrichment. Enrichment. Technology.</h1>
 <h2 class="entry">Dev logs from the big brain of Raymond Niederhendler, Hacker <em>Nonpareil</em>.</h2>
   <ul>
@@ -97,8 +95,6 @@
   <p>Within the confines of the simulation, Raymond stumbles upon a mysterious anomaly known as the Quantum Paradox Protocol,...</p>
 </li>
   </ul>
-      </div>
-</section>
 <!-- START:footer -->
 <footer>
   <p>
@@ -129,19 +125,21 @@
     observer.observe(el);
   });
 </script>
-  <script>
-  const reverseSection = document.querySelector('.scroll-reverse');
-  const scrollContent = document.querySelector('.scroll-content');
+<script>
+  const entries = document.querySelectorAll('.entry');
 
   window.addEventListener('scroll', () => {
-    const rect = reverseSection.getBoundingClientRect();
+    const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
 
-    if (rect.top < windowHeight && rect.bottom > 0) {
-      const scrollFraction = 1 - (rect.bottom / windowHeight);
-      const offset = scrollFraction * 100; // percentage
-      scrollContent.style.transform = `translateY(${offset}%)`;
-    }
+    entries.forEach((entry, index) => {
+      const rect = entry.getBoundingClientRect();
+      const offset = rect.top - windowHeight / 2;
+      const parallaxSpeed = 0.08 + (index % 3) * 0.02; // vary speed by entry
+      const move = offset * parallaxSpeed;
+
+      entry.style.transform = `translateY(${move}px)`;
+    });
   });
 </script>
 </body>
