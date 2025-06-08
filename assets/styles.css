@@ -158,4 +158,11 @@ footer {
   transition: transform 0.2s ease-out;
   will-change: transform;
 }
+  .glitch-ghost {
+  position: absolute;
+  transform: scaleY(-1) translateY(-50%);
+  opacity: 0.2;
+  pointer-events: none;
+  left: 0;
+}
 }
