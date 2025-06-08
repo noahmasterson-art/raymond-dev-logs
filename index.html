@@ -192,5 +192,12 @@
     });
   });
 </script>
+  <script>
+  document.querySelectorAll('.entry h2').forEach(h2 => {
+    const ghost = h2.cloneNode(true);
+    ghost.classList.add('glitch-ghost');
+    h2.parentNode.insertBefore(ghost, h2.nextSibling);
+  });
+</script>
 </body>
 </html>
