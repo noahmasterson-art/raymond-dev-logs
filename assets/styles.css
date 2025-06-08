@@ -159,20 +159,15 @@ footer {
   will-change: transform;
 }
 .glitch-ghost {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  transform: scaleY(-1) translateY(-50%);
-  opacity: 0.35;
-  pointer-events: none;
+  transform: scaleY(-1) translateY(-60%);
+  opacity: 0.15;
   font-style: italic;
-  color: rgba(255, 0, 0, 0.9);
+  color: #ff0022;
   text-shadow:
-    1px 1px 2px rgba(255, 0, 0, 0.5),
-    -1px -1px 2px rgba(0, 255, 255, 0.4),
-    2px 2px 6px rgba(255, 0, 255, 0.3);
-  mix-blend-mode: screen;
-  z-index: -1;
+    0 0 2px #ff0040,
+    -1px -1px 1px rgba(0,255,255,0.3);
+  mix-blend-mode: lighten;
+  font-size: 0.95em;
+  line-height: 1.2;
 }
 }
