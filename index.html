@@ -129,5 +129,20 @@
     observer.observe(el);
   });
 </script>
+  <script>
+  const reverseSection = document.querySelector('.scroll-reverse');
+  const scrollContent = document.querySelector('.scroll-content');
+
+  window.addEventListener('scroll', () => {
+    const rect = reverseSection.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    if (rect.top < windowHeight && rect.bottom > 0) {
+      const scrollFraction = 1 - (rect.bottom / windowHeight);
+      const offset = scrollFraction * 100; // percentage
+      scrollContent.style.transform = `translateY(${offset}%)`;
+    }
+  });
+</script>
 </body>
 </html>
