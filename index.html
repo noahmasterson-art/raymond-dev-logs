@@ -203,20 +203,26 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 <script>
+document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.entry p').forEach(p => {
+    // Create ghost
     const ghost = p.cloneNode(true);
-    ghost.classList.add('glitch-ghost');
-    ghost.style.position = 'absolute';
-    ghost.style.top = '0';
-    ghost.style.left = '0';
-    ghost.style.width = '100%';
-    ghost.style.transform = 'scaleY(-1) translateY(-50%)';
-    ghost.style.opacity = '0.12';
-    ghost.style.pointerEvents = 'none';
-    ghost.style.zIndex = '-1';
-    p.style.position = 'relative';
-    p.appendChild(ghost);
+    ghost.className = 'glitch-ghost';
+
+    // Wrap ghost in a container that doesn't break layout
+    const wrapper = document.createElement('div');
+    wrapper.style.position = 'absolute';
+    wrapper.style.top = '0';
+    wrapper.style.left = '0';
+    wrapper.style.width = '100%';
+    wrapper.style.pointerEvents = 'none';
+    wrapper.appendChild(ghost);
+
+    // Place wrapper next to the original element
+    p.parentNode.style.position = 'relative'; // ensure containing block
+    p.parentNode.appendChild(wrapper);
   });
+});
 </script>
 </body>
 </html>
