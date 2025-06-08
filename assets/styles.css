@@ -158,16 +158,4 @@ footer {
   transition: transform 0.2s ease-out;
   will-change: transform;
 }
-.glitch-ghost {
-  transform: scaleY(-1) translateY(-60%);
-  opacity: 0.15;
-  font-style: italic;
-  color: #ff0022;
-  text-shadow:
-    0 0 2px #ff0040,
-    -1px -1px 1px rgba(0,255,255,0.3);
-  mix-blend-mode: lighten;
-  font-size: 0.95em;
-  line-height: 1.2;
-}
 }
