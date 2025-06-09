@@ -1,0 +1,169 @@
+/* Base layout */
+body {
+  font-family: "Tektur", sans-serif;
+  margin: 0;
+  padding: 0 1rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  background-color: #111;
+  color: #eee;
+  transition: background-color 1s ease;
+  animation: bgMorph linear;
+  animation-timeline: scroll();
+  animation-range: 0 100vh;
+}
+
+/* Background morph on scroll */
+@keyframes bgMorph {
+  0% { background-color: #111; }
+  100% { background-color: #000; }
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-family: 'Courier New', Courier, monospace;
+  color: #00ffe7;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font-size: 2rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.25rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #ffd700;
+}
+
+h3 {
+  font-size: 1rem;
+
+}
+
+/* Paragraphs and content */
+p {
+  margin-bottom: 1rem;
+}
+
+/* Summary block */
+.summary {
+  background: #222;
+  border-left: 4px solid #00ffe7;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+/* Links */
+a {
+  color: #00ffe7;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid #444;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* Scroll-driven jitter animation for entries */
+@keyframes jitter {
+  0%, 100% { transform: translate(0); filter: none; }
+  25% { transform: translate(5px, -5px) skew(0.5deg); filter: brightness(1.05); }
+  50% { transform: translate(-5px, 5px) skew(-0.5deg); filter: contrast(1.1); }
+}
+
+.entry {
+  animation: jitter 0.8s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 20% cover 40%;
+  will-change: transform;
+}
+
+/* Glitch text effect on hover */
+.entry h2:hover {
+  color: #ff00c8;
+  text-shadow:
+    1px 0 red,
+    -1px 0 blue;
+  animation: glitchFlash 0.3s linear infinite;
+}
+
+@keyframes glitchFlash {
+  0% { text-shadow: 1px 0 red, -1px 0 blue; }
+  50% { text-shadow: -2px 0 blue, 2px 0 red; }
+  100% { text-shadow: 1px 0 red, -1px 0 blue; }
+}
+
+/* Cursor magnetic hover effect */
+.entry:hover {
+  transform: scale(1.01) rotate(0.1deg);
+  transition: transform 0.3s ease;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  body {
+    padding: 0 0.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+      h3 {
+    font-size: .75rem;
+  }
+    
+ .entry {
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
+.entry[data-drift="true"] {
+  animation: driftSkew 1.4s infinite alternate ease-in-out;
+}
+
+@keyframes driftSkew {
+  0%   { transform: skewX(0.2deg) translateY(0px); }
+  25%  { transform: skewX(-0.3deg) translateY(-0.5px); }
+  50%  { transform: skewX(0.4deg) translateY(0.5px); }
+  100% { transform: skewX(-0.1deg) translateY(0px); }
+}
+
+@keyframes sketchShake {
+  0%   { transform: translate(0, 0) rotate(0); }
+  10%  { transform: translate(-2px, 1px) rotate(-0.5deg); }
+  20%  { transform: translate(3px, -1px) rotate(0.5deg); }
+  30%  { transform: translate(-2px, 2px) rotate(0deg); }
+  40%  { transform: translate(1px, -1px) rotate(0.5deg); }
+  50%  { transform: translate(-1px, 2px) rotate(-0.5deg); }
+  60%  { transform: translate(2px, 1px) rotate(0deg); }
+  70%  { transform: translate(-3px, -2px) rotate(0.5deg); }
+  80%  { transform: translate(2px, 1px) rotate(0deg); }
+  90%  { transform: translate(-1px, 2px) rotate(-0.5deg); }
+  100% { transform: translate(0, 0) rotate(0); }
+}
+
+body.shake-screen {
+  animation: sketchShake 1s ease-in-out 2;
+}
+}

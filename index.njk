@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'meta.html' %}
+<body>
+<!-- START:content -->  
+{% include "header.html" %}
+
+<ul>
+  {% for post in collections.posts %}
+    <li>
+      <p>{{ post.data.date }}</p>
+      <a href="{{ post.url }}">{{ post.data.title }}</a><br>
+      <p>{{ post.data.summary }}</p>
+    </li>
+  {% endfor %}
+</ul>
+<!-- END:content -->
+<!-- START:footer -->
+{% include 'footer.html' %}
+<!-- END:footer -->
+<script>
+  const entries = document.querySelectorAll('.entry');
+
+  const observer = new IntersectionObserver((entriesList) => {
+    entriesList.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.25
+  });
+
+  entries.forEach(el => {
+    el.classList.add('glitch-in');
+    observer.observe(el);
+  });
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+
+    entries.forEach((entry, index) => {
+      const rect = entry.getBoundingClientRect();
+      const offset = rect.top - windowHeight / 2;
+      const parallaxSpeed = 0.08 + (index % 3) * 0.02; // vary speed by entry
+      const move = offset * parallaxSpeed;
+
+      entry.style.transform = `translateY(${move}px)`;
+    });
+  });
+</script>
+</body>
+</html>
