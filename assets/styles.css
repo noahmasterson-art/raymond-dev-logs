@@ -53,6 +53,10 @@ p {
 }
 
 /* Summary block */
+.date {
+  color: #D3D3D3
+}
+
 .summary {
   background: #222;
   border-left: 4px solid #00ffe7;
