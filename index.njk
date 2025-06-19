@@ -4,7 +4,8 @@
 <body>
 <!-- START:content -->  
 {% include "header.html" %}
-
+<main>
+<article>
 <ul>
   {% for post in collections.posts %}
     <li class="entry">
@@ -14,6 +15,8 @@
     </li>
   {% endfor %}
 </ul>
+</article>
+</main>
 <!-- END:content -->
 <!-- START:footer -->
 {% include 'footer.html' %}
